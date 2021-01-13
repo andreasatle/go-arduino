@@ -151,11 +151,11 @@ func fastBlink() {
 var letters [26]string
 var numbers [10]string
 
-// Specify what LED to blink.
+// Specify what LED to blink. LED is short for D13.
 var led = machine.LED
 
 // Specify the message to be encoded.
-var msg = "MY NAME IS ANDREAS"
+var msg = "ANTON"
 
 // init sets up the global environment
 func init() {
