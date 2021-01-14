@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// PWM seems to use range 0-65535 rather than 0-255
+// PWM seems to use range 0-65535 rather than 0-255.
 const (
 	unitTime = 200
 	high     = uint16(1<<16 - 1)
@@ -42,16 +42,21 @@ func set(i, pwm uint16) {
 	}
 }
 
-func main() {
+func binaryCounter() {
 	factors := [4]int{1, 2, 3, 2}
 	for {
 		for q := range factors {
 			_ = q
 			for i := uint16(0); i < 16; i++ {
-				set(i, uint16(1<<i-1))
+				brightness := uint16(1<<i - 1)
+				set(i, brightness)
 				delay(unitTime)
 				set(i, low)
 			}
 		}
 	}
+}
+
+func main() {
+	binaryCounter()
 }
