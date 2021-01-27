@@ -22,9 +22,9 @@ func NewBlink(pin machine.Pin, delay int) *Blink {
 func (b *Blink) Run() {
 	for {
 		b.Pin.High()
-		delay.DelayMilli(b.Delay)
+		delay.Milliseconds(b.Delay)
 		b.Pin.Low()
-		delay.DelayMilli(b.Delay)
+		delay.Milliseconds(b.Delay)
 	}
 }
 
@@ -33,7 +33,7 @@ func (b *Blink) Control() {
 	for {
 		for d := 500; d < 2000; d += 100 {
 			b.Delay = d
-			delay.DelayMilli(2 * d)
+			delay.Milliseconds(2 * d)
 		}
 	}
 }

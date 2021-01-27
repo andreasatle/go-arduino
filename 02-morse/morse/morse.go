@@ -82,26 +82,26 @@ func (m *Morse) Run() {
 func (m *Morse) fastBlink() {
 	for {
 		m.pin.High()
-		delay.DelayMilli(m.unit / 2)
+		delay.Milliseconds(m.unit / 2)
 		m.pin.Low()
-		delay.DelayMilli(m.unit / 2)
+		delay.Milliseconds(m.unit / 2)
 	}
 }
 
 func (m *Morse) Encode() {
 	for i, c := range m.message {
 		if isSpace(c) {
-			delay.DelayMilli(m.wordSpace)
+			delay.Milliseconds(m.wordSpace)
 			continue
 		}
 		m.outputChar(c)
 
 		if i+1 < len(m.message) && !isSpace([]rune(m.message)[i+1]) {
-			delay.DelayMilli(m.letterSpace)
+			delay.Milliseconds(m.letterSpace)
 		}
 
 	}
-	delay.DelayMilli(m.msgSpace)
+	delay.Milliseconds(m.msgSpace)
 }
 
 // createLetters stores array with morse-codes for capital letters
@@ -191,7 +191,7 @@ func (m *Morse) press(c rune) {
 	}
 
 	m.pin.High()
-	delay.DelayMilli(n)
+	delay.Milliseconds(n)
 	m.pin.Low()
 }
 
@@ -207,7 +207,7 @@ func (m *Morse) outputChar(c rune) {
 
 	m.press([]rune(code)[0])
 	for _, c := range []rune(code)[1:] {
-		delay.DelayMilli(m.charSpace)
+		delay.Milliseconds(m.charSpace)
 		m.press(c)
 	}
 }
